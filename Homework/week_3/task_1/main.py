@@ -1,6 +1,9 @@
-class Library:
-    def __init__(self, address, name, books):
+class Building:
+    def __init__(self, address):
         self.address = address
+class Library(Building):
+    def __init__(self, address, name, books):
+        Building.__init__(self, address)
         self.name = name
         self.books = books
 
@@ -10,9 +13,11 @@ class Library:
             del self.books[id]
 
     def GetInformationAboutLibrary(self):
-        print(self.address, self.name)
+        print("Адрес: ", self.address)
+        print("Название библиотеки: ", self.name)
+        print("Ассортимент книг: ")
         for x in self.books:
-            print(x.name, x.author, x.category, x.cost)
+            print("Название книги: ", x.name, "Автор: ",  x.author, "Жанр: ", x.category, "Стоимость: ", x.cost, "Количество книг в библиотеке: ", x.count)
 
 class Book:
     def __init__(self, id, name, author, category, cost, count):
@@ -32,6 +37,8 @@ if __name__ == "__main__":
     B2 = Book(2, "Три поросенка", "Кто-то там", "Сказки", 800, 25)
     B2.GetInformationAboutBook()
 
+    print("")
+
     b = [B1, B2]
-    L1 = Library("1", "Книжка", b)
+    L1 = Library("Новый бульвар", "Книжка", b)
     L1.GetInformationAboutLibrary()
